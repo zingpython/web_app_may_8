@@ -9,6 +9,9 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+env
+db.sqlite3
+blog_project/db.sqlite3
 build/
 develop-eggs/
 dist/
