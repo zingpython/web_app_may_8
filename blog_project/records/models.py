@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 class Post(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
@@ -21,3 +22,16 @@ class Post(models.Model):
 	def __unicode__(self):
 		
 		 return str(self.title)
+
+	def get_absolute_url(self):
+		return reverse('records:detail_post', kwargs={'pk':self.pk})
+
+
+
+
+
+
+
+
+
+
