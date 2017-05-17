@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from django.urls import reverse_lazy
+
 from records.models import Post 
 
 from django.http import HttpResponse
@@ -23,7 +27,6 @@ class PostCreate(CreateView):
     fields = ['title', 'slug', 'image', 'content']
 
 
-from django.views.generic.edit import UpdateView
 
 
 class PostUpdate(UpdateView):
@@ -31,7 +34,9 @@ class PostUpdate(UpdateView):
     fields = ['title', 'slug', 'image', 'content']
     template_name_suffix = '_update_form'
 
-
+class PostDelete(DeleteView):
+	model = Post
+	success_url = reverse_lazy('records:list_posts')
 
 
 

@@ -1,0 +1,8 @@
+<h1>Posts</h1>
+<ul>
+{% for post in object_list %}
+    <a href="{{post.get_absolute_url}}" <li>{{ post.title }} - {{ post.slug }}</li></a>
+{% empty %}
+    <li>No posts yet.</li>
+{% endfor %}
+</ul>
