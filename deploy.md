@@ -85,25 +85,25 @@ Change 000-default.conf configuration
 ServerName localhost
 ServerAdmin webmaster@localhost
 
-Alias /static /var/www/venv/feb_webapp/project/static
-<Directory /var/www/venv/feb_webapp/project/static>
+Alias /static /var/www/venv/web_app_may_8/blog_project/static
+<Directory /var/www/venv/web_app_may_8/blog_project/static>
    Require all granted
  </Directory>
 
-Alias /media /var/www/venv/feb_webapp/project/media
-<Directory /var/www/venv/feb_webapp/project/media>
+Alias /media /var/www/venv/web_app_may_8/blog_project/media
+<Directory /var/www/venv/web_app_may_8/blog_project/media>
    Require all granted
 </Directory>
 
-<Directory /var/www/venv/feb_webapp/project/project>
+<Directory /var/www/venv/web_app_may_8/blog_project/blog_project>
     <Files wsgi.py>
         Require all granted
     </Files>
 </Directory>
 
-WSGIDaemonProcess cfehome python-path=/var/www/venv/feb_webapp/project/:/var/www/venv/lib/python3.4/site-packages
+WSGIDaemonProcess cfehome python-path=/var/www/venv/web_app_may_8/blog_project/:/var/www/venv/lib/python3.4/site-packages
 WSGIProcessGroup cfehome
-WSGIScriptAlias / /var/www/venv/feb_webapp/project/project/wsgi.py
+WSGIScriptAlias / /var/www/venv/web_app_may_8/blog_project/blog_project/wsgi.py
 
 
 ErrorLog ${APACHE_LOG_DIR}/error.log
@@ -118,10 +118,10 @@ sudo chmod 755 filename command - you allow everyone to read and execute the fil
 sudo chmod 777 means making the file readable, writable and executable by everyone.
 ```
 sudo adduser $USER www-data
-sudo chown www-data:www-data /var/www/venv/feb_webapp/project
-sudo chown www-data:www-data /var/www/venv/feb_webapp/project/db.sqlite3
-sudo chmod -R 775 /var/www/venv/feb_webapp/project
-sudo chmod 777 /var/www/venv/feb_webapp/project/media/posts/
+sudo chown www-data:www-data /var/www/venv/web_app_may_8/blog_project
+sudo chown www-data:www-data /var/www/venv/web_app_may_8/blog_project/db.sqlite3
+sudo chmod -R 775 /var/www/venv/web_app_may_8/blog_project
+sudo chmod 777 /var/www/venv/web_app_may_8/blog_project/media/records/
 ```
 
 Step 11.
@@ -144,50 +144,15 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
+
 STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www/venv/feb_webapp/project/static/'
+              
+STATIC_ROOT = '/var/www/venv/web_app_may_8/blog_project/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "/var/www/venv/feb_webapp/project/staticfiles")
+    os.path.join(BASE_DIR, '/var/www/venv/web_app_may_8/blog_project/staticfiles/')
 ]
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '/var/www/venv/feb_webapp/project/media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, '/var/www/venv/web_app_may_8/blog_project/media/')
 ```
-
-
-Exapmle of 000-default.conf
-
-```
-<VirtualHost *:80>
-ServerName localhost
-ServerAdmin webmaster@localhost
-
-Alias /static /var/www/venv/feb_webapp/project/static
-<Directory /var/www/venv/feb_webapp/project/static>
-   Require all granted
- </Directory>
-
-Alias /media /var/www/venv/feb_webapp/project/media
-<Directory /var/www/venv/feb_webapp/project/media>
-   Require all granted
-</Directory>
-
-<Directory /var/www/venv/feb_webapp/project/project>
-    <Files wsgi.py>
-        Require all granted
-    </Files>
-</Directory>
-
-WSGIDaemonProcess home python-path=/var/www/venv/feb_webapp/project/:/var/www/venv/lib$
-WSGIProcessGroup home
-WSGIScriptAlias / /var/www/venv/feb_webapp/project/project/wsgi.py
-
-
-ErrorLog ${APACHE_LOG_DIR}/error.log
-CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-
-```
-
-
 
 
